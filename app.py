@@ -2,7 +2,8 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
-from agents import NotesAgent, ResearchAgent, PlannerAgent
+from app.agents import NotesAgent, ResearchAgent, PlannerAgent
+
 
 load_dotenv()
 
@@ -34,3 +35,4 @@ if st.button("Generate 🚀"):
             response = agent.create_plan(user_input, 10)
 
         st.success(response)
+
