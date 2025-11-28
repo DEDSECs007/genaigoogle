@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 from app.agents import NotesAgent, ResearchAgent, PlannerAgent
-
+from app.list_models import list_available_models
 
 load_dotenv()
 
@@ -17,6 +17,10 @@ mode = st.selectbox("Select Action:",
 )
 
 user_input = st.text_area("Enter your text or topic:")
+
+if st.sidebar.button("Show Available Models"):
+    models = list_available_models()
+    st.sidebar.write(models)
 
 if st.button("Generate 🚀"):
     if not user_input.strip():
@@ -35,4 +39,5 @@ if st.button("Generate 🚀"):
             response = agent.create_plan(user_input, 10)
 
         st.success(response)
+
 
